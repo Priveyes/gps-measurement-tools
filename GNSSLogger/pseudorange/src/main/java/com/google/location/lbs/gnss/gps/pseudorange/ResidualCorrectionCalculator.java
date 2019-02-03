@@ -139,14 +139,7 @@ public class ResidualCorrectionCalculator {
 
     // Sort the satellites by descending order of their elevations
     Arrays.sort(
-        satelliteResidualsAndElevationList,
-        new Comparator<SatelliteElevationAndResiduals>() {
-          @Override
-          public int compare(
-              SatelliteElevationAndResiduals o1, SatelliteElevationAndResiduals o2) {
-            return Double.compare(o2.elevationDegree, o1.elevationDegree);
-          }
-        });
+        satelliteResidualsAndElevationList, (o1, o2) -> Double.compare(o2.elevationDegree, o1.elevationDegree));
 
     // Pick up the top elevation satellites
     double[] topElevationSatsResiduals = GpsMathOperations.createAndFillArray(

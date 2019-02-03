@@ -1,15 +1,15 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion '26.0.0'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
     defaultConfig {
         applicationId "com.google.android.apps.location.gps.gnsslogger"
         minSdkVersion 24
-        targetSdkVersion 25
+        targetSdkVersion 28
         versionCode 1
         versionName "2.0.0.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
     }
     buildTypes {
@@ -19,8 +19,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility '1.8'
+        targetCompatibility '1.8'
     }
     dexOptions {
         preDexLibraries = false
@@ -29,17 +29,17 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    testCompile 'junit:junit:4.12'
-    compile 'com.android.support:design:26.+'
-    compile 'com.android.support:support-v13:26.+'
-    compile 'com.google.android.gms:play-services-location:11.0.2'
-    compile 'com.google.android.gms:play-services-maps:11.0.2'
-    compile project(':pseudorange')
-    compile files('libs/achartengine-1.2.0.jar')
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.legacy:legacy-support-v13:1.0.0'
+    implementation 'com.google.android.gms:play-services-location:16.0.0'
+    implementation 'com.google.android.gms:play-services-maps:16.0.0'
+    implementation project(':pseudorange')
+    implementation files('libs/achartengine-1.2.0.jar')
 }
 

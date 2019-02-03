@@ -301,8 +301,7 @@ public class PseudorangePositionVelocityFromRealTimeEvents {
   }
 
   private boolean navMessageProtoContainsSvid(GpsNavMessageProto navMessageProto, int svid) {
-    List<GpsEphemerisProto> ephemeridesList =
-            new ArrayList<GpsEphemerisProto>(Arrays.asList(navMessageProto.ephemerids));
+    List<GpsEphemerisProto> ephemeridesList = new ArrayList<>(Arrays.asList(navMessageProto.ephemerids));
     for (GpsEphemerisProto ephProtoFromList : ephemeridesList) {
       if (ephProtoFromList.prn == svid) {
         return true;
@@ -394,8 +393,7 @@ public class PseudorangePositionVelocityFromRealTimeEvents {
           GpsNavMessageProto hardwareGpsNavMessageProto) {
     boolean useNavMessageFromSupl = true;
     if (hardwareGpsNavMessageProto != null) {
-      ArrayList<GpsEphemerisProto> hardwareEphemeridesList=
-              new ArrayList<GpsEphemerisProto>(Arrays.asList(hardwareGpsNavMessageProto.ephemerids));
+      ArrayList<GpsEphemerisProto> hardwareEphemeridesList= new ArrayList<>(Arrays.asList(hardwareGpsNavMessageProto.ephemerids));
       if (hardwareGpsNavMessageProto.iono != null) {
         for (int i = 0; i < GpsNavigationMessageStore.MAX_NUMBER_OF_SATELLITES; i++) {
           if (usefulSatellitesToReceiverMeasurements[i] != null) {

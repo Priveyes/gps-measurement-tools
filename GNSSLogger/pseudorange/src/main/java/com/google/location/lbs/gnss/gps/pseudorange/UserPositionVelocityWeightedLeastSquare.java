@@ -700,7 +700,7 @@ class UserPositionVelocityWeightedLeastSquare {
   private GpsEphemerisProto getEphemerisForSatellite(GpsNavMessageProto navMeassageProto,
                                                      int satPrn) {
     List<GpsEphemerisProto> ephemeridesList
-            = new ArrayList<GpsEphemerisProto>(Arrays.asList(navMeassageProto.ephemerids));
+            = new ArrayList<>(Arrays.asList(navMeassageProto.ephemerids));
     GpsEphemerisProto ephemeridesProto = null;
     int ephemerisPrn = 0;
     for (GpsEphemerisProto ephProtoFromList : ephemeridesList) {

@@ -30,9 +30,9 @@ public class GpsMathOperations {
    */
   public static double vectorNorm(double[] inputVector) {
     double normSqured = 0;
-    for (int i = 0; i < inputVector.length; i++) {
-      normSqured = Math.pow(inputVector[i], 2) + normSqured;
-    }
+	  for (double v : inputVector) {
+		  normSqured = Math.pow(v, 2) + normSqured;
+	  }
 
     return Math.sqrt(normSqured);
   }
@@ -136,12 +136,12 @@ public class GpsMathOperations {
     double sum = 0;
     double size = 0;
 
-    for (int i = 0; i < vector.length; i++) {
-      if (!Double.isNaN(vector[i])) {
-        sum += vector[i];
-        size++;
-      }
-    }
+	  for (double v : vector) {
+		  if (!Double.isNaN(v)) {
+			  sum += v;
+			  size++;
+		  }
+	  }
     return size == 0 ? Double.NaN : sum / size;
   }
 

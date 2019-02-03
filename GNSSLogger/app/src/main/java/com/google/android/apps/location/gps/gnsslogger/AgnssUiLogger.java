@@ -23,7 +23,9 @@ import android.location.GnssStatus;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
+
 import com.google.android.apps.location.gps.gnsslogger.AgnssFragment.AgnssUIFragmentComponent;
+
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -32,80 +34,80 @@ import java.util.concurrent.TimeUnit;
  */
 public class AgnssUiLogger implements GnssListener {
 
-  private static final int USED_COLOR = Color.rgb(0x4a, 0x5f, 0x70);
+	private static final int USED_COLOR = Color.rgb(0x4a, 0x5f, 0x70);
 
-  public AgnssUiLogger() {}
+	public AgnssUiLogger() {}
 
-  private AgnssUIFragmentComponent mUiFragmentComponent;
+	private AgnssUIFragmentComponent mUiFragmentComponent;
 
-  public synchronized AgnssUIFragmentComponent getUiFragmentComponent() {
-    return mUiFragmentComponent;
-  }
+	public synchronized AgnssUIFragmentComponent getUiFragmentComponent() {
+		return mUiFragmentComponent;
+	}
 
-  public synchronized void setUiFragmentComponent(AgnssUIFragmentComponent value) {
-    mUiFragmentComponent = value;
-  }
+	public synchronized void setUiFragmentComponent(AgnssUIFragmentComponent value) {
+		mUiFragmentComponent = value;
+	}
 
-  @Override
-  public void onProviderEnabled(String provider) {
-    logLocationEvent("onProviderEnabled: " + provider);
-  }
+	@Override
+	public void onProviderEnabled(String provider) {
+		logLocationEvent("onProviderEnabled: " + provider);
+	}
 
-  @Override
-  public void onTTFFReceived(long l) {
-    logLocationEvent("timeToFirstFix: " + TimeUnit.NANOSECONDS.toMillis(l) + "millis");
-  }
+	@Override
+	public void onTTFFReceived(long l) {
+		logLocationEvent("timeToFirstFix: " + TimeUnit.NANOSECONDS.toMillis(l) + "millis");
+	}
 
-  @Override
-  public void onProviderDisabled(String provider) {
-    logLocationEvent("onProviderDisabled: " + provider);
-  }
+	@Override
+	public void onProviderDisabled(String provider) {
+		logLocationEvent("onProviderDisabled: " + provider);
+	}
 
-  @Override
-  public void onLocationChanged(Location location) {
-    logLocationEvent("onLocationChanged: " + location);
-  }
+	@Override
+	public void onLocationChanged(Location location) {
+		logLocationEvent("onLocationChanged: " + location);
+	}
 
-  @Override
-  public void onLocationStatusChanged(String provider, int status, Bundle extras) {}
+	@Override
+	public void onLocationStatusChanged(String provider, int status, Bundle extras) {}
 
-  @Override
-  public void onGnssMeasurementsReceived(GnssMeasurementsEvent event) {}
+	@Override
+	public void onGnssMeasurementsReceived(GnssMeasurementsEvent event) {}
 
-  @Override
-  public void onGnssMeasurementsStatusChanged(int status) {}
+	@Override
+	public void onGnssMeasurementsStatusChanged(int status) {}
 
-  @Override
-  public void onGnssNavigationMessageReceived(GnssNavigationMessage event) {}
+	@Override
+	public void onGnssNavigationMessageReceived(GnssNavigationMessage event) {}
 
-  @Override
-  public void onGnssNavigationMessageStatusChanged(int status) {}
+	@Override
+	public void onGnssNavigationMessageStatusChanged(int status) {}
 
-  @Override
-  public void onGnssStatusChanged(GnssStatus gnssStatus) {}
+	@Override
+	public void onGnssStatusChanged(GnssStatus gnssStatus) {}
 
-  @Override
-  public void onNmeaReceived(long timestamp, String s) {}
+	@Override
+	public void onNmeaReceived(long timestamp, String s) {}
 
-  @Override
-  public void onListenerRegistration(String listener, boolean result) {
-    logEvent("Registration", String.format("add%sListener: %b", listener, result), USED_COLOR);
-  }
+	@Override
+	public void onListenerRegistration(String listener, boolean result) {
+		logEvent("Registration", String.format("add%sListener: %b", listener, result), USED_COLOR);
+	}
 
-  private void logEvent(String tag, String message, int color) {
-    String composedTag = GnssContainer.TAG + tag;
-    Log.d(composedTag, message);
-    logText(tag, message, color);
-  }
+	private void logEvent(String tag, String message, int color) {
+		String composedTag = GnssContainer.TAG + tag;
+		Log.d(composedTag, message);
+		logText(tag, message, color);
+	}
 
-  private void logText(String tag, String text, int color) {
-    AgnssUIFragmentComponent component = getUiFragmentComponent();
-    if (component != null) {
-      component.logTextFragment(tag, text, color);
-    }
-  }
+	private void logText(String tag, String text, int color) {
+		AgnssUIFragmentComponent component = getUiFragmentComponent();
+		if (component != null) {
+			component.logTextFragment(tag, text, color);
+		}
+	}
 
-  private void logLocationEvent(String event) {
-    logEvent("Location", event, USED_COLOR);
-  }
+	private void logLocationEvent(String event) {
+		logEvent("Location", event, USED_COLOR);
+	}
 }
